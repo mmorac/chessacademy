@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <title>Chess Academy</title>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="myNgApp">
+    <div ng-controller="myController">
+    <input type="text" ng-model="elo" />
+
+    <br/>
+
+    <input type="text" ng-model="elo_r1" />
+    <select ng-model="resultado_r1">
+        <option value="1">1</option>
+        <option value="0.5">0.5</option>
+        <option value="0">0</option>
+    </select>
+
+    <br/>
+
+    <input type="text" ng-model="elo_r2" />
+    <select ng-model="resultado_r2">
+        <option value="1">1</option>
+        <option value="0.5">0.5</option>
+        <option value="0">0</option>
+    </select>
+
+    <br/>
+
+    <input type="text" ng-model="elo_r3" />
+    <select ng-model="resultado_r3">
+        <option value="1">1</option>
+        <option value="0.5">0.5</option>
+        <option value="0">0</option>
+    </select>
+
+    <br/>
+
+    <input type="text" ng-model="elo_r4" />
+    <select ng-model="resultado_r4">
+        <option value="1">1</option>
+        <option value="0.5">0.5</option>
+        <option value="0">0</option>
+    </select>
+
+    <br/>
+
+    <input type="text" ng-model="elo_r5" />
+    <select ng-model="resultado_r5">
+        <option value="1">1</option>
+        <option value="0.5">0.5</option>
+        <option value="0">0</option>
+    </select>
+
+    <br/>
+
+    <input type="text" ng-model="elo_r6" />
+    <select ng-model="resultado_r6">
+        <option value="1">1</option>
+        <option value="0.5">0.5</option>
+        <option value="0">0</option>
+    </select>
+
+    <br/>
+
+    <input type="text" ng-model="elo_r7" />
+    <select ng-model="resultado_r7">
+        <option value="1">1</option>
+        <option value="0.5">0.5</option>
+        <option value="0">0</option>
+    </select>
+
+    <br/>
+
+    <input type="text" ng-model="elo_r8" />
+    <select ng-model="resultado_r8">
+        <option value="1">1</option>
+        <option value="0.5">0.5</option>
+        <option value="0">0</option>
+    </select>
+
+    <br/>
+
+    <input type="text" ng-model="elo_r9" />
+    <select ng-model="resultado_r9">
+        <option value="1">1</option>
+        <option value="0.5">0.5</option>
+        <option value="0">0</option>
+    </select>
+
+
+    <button ng-click="calcular_elo(elo, [elo_r1, elo_r2, elo_r3, elo_r4, elo_r5, elo_r6, elo_r7, elo_r8, elo_r9], [resultado_r1, resultado_r2, resultado_r3, resultado_r4, resultado_r5, resultado_r6, resultado_r7, resultado_r8, resultado_r9])">Show Message</button>
+    <label ng-bind="variacion"></label>
+    </div>
+
+    <script>
+        var ngApp = angular.module('myNgApp', []);
+
+        ngApp.controller('myController', function ($scope) {
+            $scope.elo = 0;
+            $scope.elo_rival = 0;
+            $scope.exp = 0;
+            $scope.factor = 0;
+            $scope.variacion = 0;
+            var resultado = 0;
+            message = "Hello";
+            $scope.calcular_elo=function(elo, elo_rivales, resultados){
+                if($scope.elo > 2200){
+                    factor = 10;
+                }
+                else{
+                    if($scope.elo>2000){
+                        factor = 15;
+                    }
+                    else{
+                        if($scope.elo>1800){
+                            factor = 20;
+                        }
+                        else{
+                            if($scope.elo>1600){
+                                factor = 25;
+                            }
+                            else{
+                                factor = 30;
+                            }
+                        }
+                    }
+                }
+
+
+                elo_rivales.forEach(calcular_expectativa);
+
+                function calcular_expectativa(elemento){
+                    if(elemento >= 1000){
+                        $scope.exp = $scope.exp + (1 / (1 + Math.pow(10, ((elemento - elo)/400))));
+                    }
+                }
+                resultados.forEach(sumar_resultados);
+
+                function sumar_resultados(elemento){
+                    if(elemento === "0.5"){
+                        elemento = 0.5;
+                    }
+                    else{
+                        elemento = parseInt(elemento, 10);
+                    }
+                    if(elemento >= 0){
+                        resultado += elemento;
+                    }
+                }
+
+                console.log("Resultado: " + resultado - $scope.exp);
+
+                $scope.variacion = resultado - $scope.exp;
+                $scope.variacion = $scope.variacion * factor;
+                $scope.variacion = $scope.variacion.toFixed(2);
+            };
+
+        });
+    </script>
+</body>
+</html>
