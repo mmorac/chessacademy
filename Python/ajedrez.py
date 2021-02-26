@@ -1,21 +1,24 @@
 import chess
 
-board = chess.Board()
+posiciones = {
+    "peon" : "8/8/8/8/8/5p2/4P3/8 w - - 0 1",
+    "alfil" : "8/8/8/3B4/8/8/8/8 w - - 0 1",
+    "caballo" : "8/8/8/3N4/8/8/8/8 w - - 0 1",
+    "torre" : "8/8/8/3R4/8/8/8/8 w - - 0 1",
+    "dama" : "8/8/8/3Q4/8/8/8/8 w - - 0 1",
+    "rey" : "8/8/8/3K4/8/8/8/8 w - - 0 1"
+}
 
-print(board.legal_moves)
+pieza = input("Cuál pieza quiere aprender?\n").lower()
 
-board.push_san("e4")
-board.push_san("e5")
-board.push_san("Bc4")
-board.push_san("Nc6")
-board.push_san("Qf3")
-board.push_san("d6")
-board.push_san("Qxf7")
+tablero = chess.Board(posiciones[pieza])
 
-print(board)
+print(tablero)
 
-mate = board.is_checkmate()
+jugadas_validas = []
 
-mensaje = "Tome pal pinto, MATE CON TOMATE Y AGUACATE" if mate else "Aún no es mate"
+for m in tablero.legal_moves:
+    m = str(m)[2:]
+    jugadas_validas.append(m)
 
-print(mensaje)
+print("Su", pieza, "puede moverse a", jugadas_validas)
