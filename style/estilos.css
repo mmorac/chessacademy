@@ -1,0 +1,13 @@
+body{
+    text-align: center;
+}
+
+.contenedor_tablero{
+    width: 48rem;
+    height: 48rem;
+}
+
+.casilla{
+    width: 6rem;
+    height: 6rem;
+}

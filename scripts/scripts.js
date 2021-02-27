@@ -1,3 +1,4 @@
+/* CÓDIGO PARA CÁLCULO DE ELO */
 var ngApp = angular.module('myNgApp', []);
 
 ngApp.controller('myController', function ($scope) {
@@ -72,3 +73,5 @@ ngApp.controller('myController', function ($scope) {
     };
 
 });
+
+/* CÓDIGO PARA EL TABLERO */
