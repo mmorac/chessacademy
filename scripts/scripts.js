@@ -75,3 +75,4 @@ ngApp.controller('myController', function ($scope) {
 });
 
 /* CÓDIGO PARA EL TABLERO */
+

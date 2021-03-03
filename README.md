@@ -24,3 +24,12 @@ Feb 26th, 2021 // 22:50
 
 - Added view to display chessboard
 - Started research to create draggable content to represent the board and men
+
+Feb 26th, 2021 // 22:59
+
+- Added links in index to route to other pages
+
+Mar 3rd, 2021 // 00:47
+
+- Added Python code to monitor Lichess activity of students using their API
+- First attempts to create the MVC structure with Django
